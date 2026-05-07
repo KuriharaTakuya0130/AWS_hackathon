@@ -1,136 +1,171 @@
 # Requirements Verification Questions
 
-以下の質問は、ハッカソン提出用サービスのRequirements Analysisを完了するために必要です。
-各質問の `[Answer]:` の後に、該当する選択肢の記号を記入してください。
-選択肢に合わない場合は、最後の `X) Other` を選び、同じ `[Answer]:` 行の後に内容を記述してください。
+このファイルに回答を記入してください。各質問の `[Answer]:` の後に、選択肢の文字を入力してください。選択肢に合わない場合は最後の `Other` を選び、同じ行または次の行に補足を書いてください。
+
+## Context
+
+対象サービスは、締め切りギリギリまで着手しない人に対して「まだ始めなくてよい時間」を推定し、罪悪感を減らしながら先延ばしできる体験を提供するWebアプリです。
+
+Requirements Analysisでは、普通のタスク管理アプリに寄せすぎず、最終的に動くMVPとして成立する範囲を決めます。
 
 ## Question 1
-このサービスの最も重要なIntentはどれですか？
+このサービスの最重要Intentはどれにしますか？
 
-A) ユーザーが「いつまで始めなくてよいか」を判断でき、罪悪感なく先延ばしできる状態を作る
-B) ユーザーが締め切りに間に合うよう、最適なタスク管理と作業計画を支援する
-C) ユーザーの娯楽時間を最大化し、タスクの成否は副次的に扱う
-D) ユーザーが失敗したときの言い訳や自尊心保護を主目的にする
+A) 先延ばしを肯定しつつ、破綻しないギリギリの開始判断を支援する
+B) 罪悪感を減らし、ユーザーが休憩や現実逃避を楽しめる時間を作る
+C) 締め切り失敗時の言い訳や反省回避まで含めた体験を提供する
+D) ハッカソンテーマへのインパクトを最大化する
 X) Other (please describe after [Answer]: tag below)
 
 [Answer]: A
 
 ## Question 2
-このサービスが「人をダメにする」中核は、どの人間能力を最も強く手放させることですか？
+MVPで必ず成立させたい中心体験はどれですか？
 
-A) 着手判断: いつ始めるべきかを自分で決めない
-B) 自制心: サボりたい欲求を我慢しない
-C) 計画力: 作業計画を自分で立てない
-D) 反省と責任感: 失敗時の解釈や言い訳を委ねる
-E) 複合型: AからDを組み合わせる
+A) タスク入力後、最遅着手時刻とリスク帯がすぐ表示される体験
+B) 「サボってよい時間」と現実逃避プランが楽しく提示される体験
+C) 履歴から自分の先延ばし傾向が反映される体験
+D) 間に合わなかった時の言い訳生成まで含む体験
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: E
+[Answer]: A
 
 ## Question 3
-主な対象ユーザーは誰にしますか？
+最遅着手時刻の推定は、MVPではどの程度の精度・説明性を目指しますか？
 
-A) 課題やレポートを締め切り直前まで先延ばしする学生
-B) 仕事のタスクを締め切り直前まで着手しない社会人
-C) 趣味・家事・個人タスクを後回しにしがちな一般ユーザー
-D) 学生と社会人の両方を対象にする
+A) ルールベースでよい。入力値から安全圏・危険圏を説明可能に算出する
+B) 簡易スコアリングでよい。作業量、重要度、過去成功率から成功確率を出す
+C) 履歴学習を重視する。使うほど個人傾向が反映されることを見せる
+D) AI推定らしさを重視する。ただし断定せず確率とリスクで表現する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: X LLMによってタスク内容と過去DBから作業時間を推定する
 
 ## Question 4
-初期版で扱うタスクの範囲はどれにしますか？
+ユーザーに入力させるタスク情報として、MVPで必須にしたい範囲はどれですか？
 
-A) 締め切りが明確な単発タスクに絞る
-B) 締め切りが明確なタスクに加え、締め切りが曖昧なタスクも扱う
-C) 学校課題・仕事・家事など幅広いタスクを最初から扱う
-D) ハッカソン提出では概念設計を広く示し、初期実装スコープは単発タスクに絞る
+A) タスク名、締め切り、見積もり作業時間のみ
+B) Aに加えて、重要度、難易度、集中しやすい時間帯
+C) Bに加えて、過去の類似タスク、失敗時の影響、言い訳しやすさ
+D) できるだけ入力を少なくし、初回デモで流れが速く見えることを優先する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: D
 
 ## Question 5
-「最も遅い着手時刻」の提示は、どの表現にしますか？
+「人をダメにする」表現のトーンはどこまで攻めますか？
 
-A) 安全圏・危険圏・破滅圏の3段階で表示する
-B) 成功確率付きの時刻として表示する
-C) 推奨時刻とリスク説明を組み合わせて表示する
-D) 断定を避け、複数の選択肢として表示する
+A) 軽いユーモア中心。実用性を崩さない
+B) 皮肉や背徳感を強めるが、ユーザーを責めない
+C) かなり攻める。サボり、言い訳、反省回避を前面に出す
+D) デモや審査資料では攻め、アプリ本体では実用寄りに調整する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: C
 
 ## Question 6
-初期実装での見積もり精度は、どの方針にしますか？
+言い訳生成はMVPに含めますか？
 
-A) ルールベースの簡易見積もりから始め、利用履歴で補正する
-B) LLMにタスク内容を解釈させ、作業時間やリスクを推定する
-C) ユーザー入力を中心にし、AIは説明や提案文生成に使う
-D) ルールベースとLLMを組み合わせる
+A) 含める。テーマ適合性とデモ映えを優先する
+B) 条件付きで含める。失敗時または危険圏のみ表示する
+C) 後続拡張に回す。MVPは最遅着手とサボり時間に集中する
+D) 含めるが、実害を避けるため「下書き」「ユーモア」扱いにする
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 7
-サボり時間に提案する内容は、どこまで含めますか？
+履歴データはMVPでどこまで扱いますか？
 
-A) アプリ内で完結する短時間娯楽・休憩・現実逃避プランの提案
-B) 飲食・動画・ゲームなど外部サービスも想定するが、初期実装では連携しない
-C) 外部API連携や決済まで含めた将来構想として設計する
-D) 娯楽提案よりも、先延ばし正当化メッセージを中心にする
+A) ブラウザ内保存で十分。ログインなしで達成・失敗履歴を残す
+B) 簡易DBを使う。後でAWSデプロイしやすい構成にする
+C) MVPでは履歴なし。サンプル履歴でデモし、後続で実装する
+D) 履歴入力だけ用意し、推定への反映は限定的にする
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 8
-言い訳生成機能は、Requirements上どの位置づけにしますか？
+MVPの想定プラットフォームとして最も近いものはどれですか？
 
-A) 初期版の主要機能に含める
-B) テーマ適合性を高める補助機能として含める
-C) 将来拡張として扱い、初期版では扱わない
-D) 倫理・印象リスクがあるため、言い訳ではなくリカバリー説明に寄せる
+A) フロントエンド中心のWebアプリ。ローカル保存で完結
+B) Webフロントエンド + 軽量API + 簡易DB
+C) AWSデプロイ前提のサーバーレスWebアプリ
+D) まずは静的デモで体験を完成させ、後でAPI/DBを追加する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 9
-ビジネス価値は、どの方向を主軸にしますか？
+予測・推定の安全な見せ方として、どれを重視しますか？
 
-A) 先延ばし癖を否定せず、破綻しない範囲でサボりと作業を調停する個人向けサブスク
-B) ユーザーの空き時間・サボり時間に娯楽や飲食を推薦する送客・広告基盤
-C) 学生・社会人向けのユーモアあるタスク支援アプリとしてプレミアム機能課金する
-D) BとCを組み合わせ、短期はプレミアム課金、将来は推薦基盤に広げる
+A) 成功確率、リスク帯、安全圏/危険圏を明示し、断定を避ける
+B) 「まだサボれるが、この条件なら危険」の説明を厚くする
+C) 失敗可能性や見積もり不確実性を常に表示する
+D) ユーモアを保ちつつ、締め切り破綻を助長しすぎないガードを入れる
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 10
-ハッカソン提出物として、どのInception成果物を重視しますか？
+User Storiesで特に深掘りしたい心理はどれですか？
 
-A) Requirements AnalysisとUnit of Work計画を最優先する
-B) Requirements Analysis、User Stories、Application Design、Units Generationをすべて重視する
-C) 創造性を示すため、User StoriesとApplication Designを特に厚くする
-D) Unit分解の評価を狙い、Units Generationを最も厚くする
+A) 先延ばしと罪悪感の軽減
+B) 判断放棄と「アプリに決めてもらう」感覚
+C) 言い訳、反省回避、責任の外部化
+D) サボる時間を娯楽として正当化する感覚
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: B
 
 ## Question 11
-Should security extension rules be enforced for this project?
+Application Designで独自コンポーネントとして強調したいものはどれですか？
 
-A) Yes - enforce all SECURITY rules as blocking constraints (recommended for production-grade applications)
-B) No - skip all SECURITY rules (suitable for PoCs, prototypes, and experimental projects)
+A) Procrastination Deadline Engine: 最遅着手時刻とリスク帯を算出する
+B) Guilt-Free Idle Planner: サボってよい時間と現実逃避プランを提案する
+C) Excuse Generator: 失敗時の言い訳文を生成する
+D) Self-Deception History: 過去の成功・失敗・言い訳傾向を蓄積する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: A
 
 ## Question 12
-Should property-based testing (PBT) rules be enforced for this project?
+Unit分解では、どの観点を最優先にしますか？
 
-A) Yes - enforce all PBT rules as blocking constraints (recommended for projects with business logic, data transformations, serialization, or stateful components)
-B) Partial - enforce PBT rules only for pure functions and serialization round-trips (suitable for projects with limited algorithmic complexity)
-C) No - skip all PBT rules (suitable for simple CRUD applications, UI-only projects, or thin integration layers with no significant business logic)
+A) 「人をダメにする能力」単位を最優先し、技術単位は各Unit内に含める
+B) ビジネス能力単位を最優先し、責務・価値・画面/API/データを対応づける
+C) MVP実装しやすさを最優先し、後から能力単位に説明を整理する
+D) 審査資料のわかりやすさを最優先し、能力単位と実装単位を併記する
 X) Other (please describe after [Answer]: tag below)
 
-[Answer]: 
+[Answer]: D
 
+## Question 13
+初期MVPのスコープ外にしてよいものはどれですか？
+
+A) 外部カレンダー連携
+B) 本格的なユーザー認証
+C) 外部AI APIへの強い依存
+D) チーム共有・共同タスク管理
+X) Other (please describe after [Answer]: tag below)
+
+[Answer]: X　A, B, C, Dすべて初期MVPスコープ外
+
+## Question 14
+Security Baseline拡張ルールをこのプロジェクトで有効にしますか？
+
+A) Yes - SECURITYルールをブロッキング制約として適用する
+B) No - PoC/プロトタイプとしてSECURITYルールはスキップする
+X) Other (please describe after [Answer]: tag below)
+
+[Answer]: B
+
+## Question 15
+Property-Based Testing拡張ルールをこのプロジェクトで有効にしますか？
+
+A) Yes - PBTルールをブロッキング制約として適用する
+B) Partial - 純粋関数とシリアライズ往復など限定範囲に適用する
+C) No - MVPでは通常の単体テスト中心にする
+X) Other (please describe after [Answer]: tag below)
+
+[Answer]: B
